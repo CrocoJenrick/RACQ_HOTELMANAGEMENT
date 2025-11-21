@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Management System</title>
+</head>
+<body>
+
+    <center>
+        <h1>Welcome to Our Hotel</h1>
+        <p>Experience comfort, luxury, and top-quality service.</p>
+
+        <br><br>
+
+        <!-- Sign In Button -->
+        <form action="{{ url_for('login') }}">
+            <button type="submit">Sign In</button>
+        </form>
+
+        <br>
+
+        <!-- Book Now Button -->
+        {% if session.get("loggedin") and session.get("role") == "user" %}
+            <form action="{{ url_for('user_booking') }}">
+                <button type="submit">Book Now</button>
+            </form>
+        {% else %}
+            <form action="{{ url_for('login') }}">
+                <button type="submit">Book Now</button>
+            </form>
+        {% endif %}
+
+    </center>
+
+</body>
+</html>

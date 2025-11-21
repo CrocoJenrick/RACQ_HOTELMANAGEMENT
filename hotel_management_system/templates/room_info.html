@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rooms</title>
+</head>
+<body>
+
+<center>
+    <h1>Room Information</h1>
+
+    <p>{{ msg }}</p>
+
+    <h3>Add Room</h3>
+    <form method="POST">
+        <input name="room_number" placeholder="Room Number" required><br><br>
+        <input name="room_type" placeholder="Room Type" required><br><br>
+        <input name="price" placeholder="Price" required><br><br>
+
+        <select name="status">
+            <option>Available</option>
+            <option>Occupied</option>
+            <option>Maintenance</option>
+        </select><br><br>
+
+        <button type="submit">Add Room</button>
+    </form>
+
+    <br><hr><br>
+
+    <h3>Room List</h3>
+
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Number</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for r in rooms %}
+        <tr>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td>{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+            <td>
+                <!-- DELETE -->
+                <form method="POST" style="display:inline;">
+                    <input name="delete_id" type="hidden" value="{{ r[0] }}">
+                    <button type="submit">Delete</button>
+                </form>
+
+                <!-- UPDATE STATUS -->
+                <form method="POST" style="display:inline;">
+                    <input name="update_id" type="hidden" value="{{ r[0] }}">
+                    <select name="new_status">
+                        <option>Available</option>
+                        <option>Occupied</option>
+                        <option>Maintenance</option>
+                    </select>
+                    <button type="submit">Change</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br><br>
+    <p>Total Rooms: {{ total_rooms }}</p>
+    <p>Occupied: {{ occupied_count }}</p>
+
+    <br>
+    <a href="{{ url_for('admin_dashboard') }}">Back</a>
+</center>
+
+</body>
+</html>

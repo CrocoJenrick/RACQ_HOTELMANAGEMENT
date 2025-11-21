@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Customer</title>
+</head>
+<body>
+
+<center>
+    <h1>Edit Customer</h1>
+
+    <form method="POST">
+        <input name="name" value="{{ customer[1] }}"><br><br>
+        <input name="phone" value="{{ customer[2] }}"><br><br>
+        <input name="email" value="{{ customer[3] }}"><br><br>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <a href="{{ url_for('view_customers') }}">Back</a>
+</center>
+
+</body>
+</html>

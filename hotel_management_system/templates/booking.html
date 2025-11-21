@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Management</title>
+</head>
+<body>
+
+<center>
+
+    <h1>Manage Bookings</h1>
+
+    <p>{{ msg }}</p>
+
+    <h3>Add / Update Booking</h3>
+
+    <form method="POST">
+        <select name="customer_id">
+            {% for c in customers %}
+            <option value="{{ c[0] }}">{{ c[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <select name="room_id">
+            {% for r in rooms %}
+            <option value="{{ r[0] }}">{{ r[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <input type="date" name="checkin_date" required><br><br>
+        <input type="date" name="checkout_date" required><br><br>
+        <input type="number" name="total_amount" placeholder="Total Amount" required><br><br>
+
+        <button name="_action" value="add" type="submit">Add Booking</button>
+    </form>
+
+    <br><br><hr><br>
+
+    <h3>Current Bookings</h3>
+
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Room</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for b in bookings %}
+        <tr>
+            <td>{{ b[0] }}</td>
+            <td>{{ b[1] }}</td>
+            <td>{{ b[2] }}</td>
+            <td>{{ b[3] }}</td>
+            <td>{{ b[4] }}</td>
+            <td>{{ b[5] }}</td>
+            <td>
+                <form method="POST" style="display:inline;">
+                    <input name="_action" value="delete" type="hidden">
+                    <input name="id" value="{{ b[0] }}" type="hidden">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br><br>
+    <a href="{{ url_for('admin_dashboard') }}">Back</a>
+
+</center>
+
+</body>
+</html>

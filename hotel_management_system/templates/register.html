@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+
+<center>
+    <h1>Create User Account</h1>
+
+    <form method="POST">
+
+    <label>Username:</label>
+    <input type="text" name="username" required><br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password" required><br><br>
+
+    <label>Full Name:</label>
+    <input type="text" name="name" required><br><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" required><br><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" required><br><br>
+
+    <button type="submit">Register</button>
+
+    <p>{{ msg }}</p>
+</form>
+
+    <p>{{ msg }}</p>
+
+    <a href="{{ url_for('login') }}">Back to Login</a>
+</center>
+
+</body>
+</html>

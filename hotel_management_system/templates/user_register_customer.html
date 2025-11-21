@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile - Hotel Management System</title>
+</head>
+<body>
+    <center>
+        <h1>My Profile</h1>
+
+        {% if msg %}
+        <p style="color:green">{{ msg }}</p>
+        {% endif %}
+
+        <form method="POST">
+            Name: <input type="text" name="name" value="{{ customer[1] if customer else session.full_name or '' }}" required><br><br>
+            Phone: <input type="text" name="phone" value="{{ customer[2] if customer else session.phone or '' }}" required><br><br>
+            Email: <input type="email" name="email" value="{{ customer[3] if customer else session.email or '' }}" required><br><br>
+            <input type="submit" value="Update Profile">
+        </form>
+
+        <p><a href="{{ url_for('user_dashboard') }}">Back to Dashboard</a></p>
+        <p><a href="{{ url_for('user_booking') }}">Book a Room</a></p>
+        <p><a href="{{ url_for('logout') }}">Logout</a></p>
+    </center>
+</body>
+</html>

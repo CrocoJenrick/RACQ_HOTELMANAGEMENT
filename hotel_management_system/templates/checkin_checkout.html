@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check-in / Check-out</title>
+</head>
+<body>
+
+<center>
+
+<h1>Check-in / Check-out</h1>
+
+<h3>Active Bookings</h3>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Customer</th>
+        <th>Room</th>
+        <th>Check-in</th>
+        <th>Check-out</th>
+        <th>Total</th>
+        <th>Action</th>
+    </tr>
+
+    {% for a in active %}
+    <tr>
+        <td>{{ a[0] }}</td>
+        <td>{{ a[1] }}</td>
+        <td>{{ a[2] }}</td>
+        <td>{{ a[3] }}</td>
+        <td>{{ a[4] }}</td>
+        <td>{{ a[5] }}</td>
+        <td>
+            <form method="POST">
+                <input type="hidden" name="_action" value="checkout">
+                <input type="hidden" name="id" value="{{ a[0] }}">
+                <button type="submit">Check-out</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br><hr><br>
+
+<h3>Checkout History</h3>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Customer</th>
+        <th>Room</th>
+        <th>Check-in</th>
+        <th>Check-out</th>
+        <th>Total</th>
+        <th>Action</th>
+    </tr>
+
+    {% for h in history %}
+    <tr>
+        <td>{{ h[0] }}</td>
+        <td>{{ h[1] }}</td>
+        <td>{{ h[2] }}</td>
+        <td>{{ h[3] }}</td>
+        <td>{{ h[4] }}</td>
+        <td>{{ h[5] }}</td>
+        <td>
+            <form method="POST">
+                <input type="hidden" name="_action" value="delete_history">
+                <input type="hidden" name="id" value="{{ h[0] }}">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br><br>
+<a href="{{ url_for('admin_dashboard') }}">Back</a>
+
+</center>
+
+</body>
+</html>
